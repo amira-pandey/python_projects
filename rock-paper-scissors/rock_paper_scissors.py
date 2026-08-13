@@ -15,14 +15,18 @@ for i in range(rounds):
 
     # User input
     user_choice = input("Enter your move (Rock, Paper, Scissor): ").capitalize()
-    comp_choice = random.choice(item_list)
 
+    # Validate input
+    if user_choice not in item_list:
+        print("⚠️ Invalid choice! Please enter Rock, Paper, or Scissor.")
+        continue
+
+    comp_choice = random.choice(item_list)
     print(f"👉 You chose: {user_choice}, Computer chose: {comp_choice}")
 
     # Game logic
     if user_choice == comp_choice:
         print("🤝 It's a tie!")
-
     elif user_choice == "Rock":
         if comp_choice == "Paper":
             print("📄 Paper covers Rock → Computer wins")
@@ -30,7 +34,6 @@ for i in range(rounds):
         else:
             print("🪨 Rock smashes Scissor → You win")
             user_score += 1
-
     elif user_choice == "Paper":
         if comp_choice == "Scissor":
             print("✂️ Scissor cuts Paper → Computer wins")
@@ -38,7 +41,6 @@ for i in range(rounds):
         else:
             print("📄 Paper covers Rock → You win")
             user_score += 1
-
     elif user_choice == "Scissor":
         if comp_choice == "Rock":
             print("🪨 Rock smashes Scissor → Computer wins")
@@ -47,8 +49,8 @@ for i in range(rounds):
             print("✂️ Scissor cuts Paper → You win")
             user_score += 1
 
-    else:
-        print("⚠️ Invalid choice! Please enter Rock, Paper, or Scissor.")
+    # Show live scoreboard
+    print(f"📊 Current Score → You: {user_score} | Computer: {comp_score}")
 
 # Final results
 print("\n=== Final Score ===")
